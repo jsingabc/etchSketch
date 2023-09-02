@@ -1,10 +1,22 @@
-#container {
+.firstContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.moreSquares {
+    height: 40px;
+    width: 100px;
+    border-radius: 10px;
+}
+
+.container {
     border: 3px solid black;
     display: flex;
     flex-wrap: wrap;
 }
 
-#divGrid {
+.grids {
     height: 42px;
     width: 51px;
     border: 3px solid black;

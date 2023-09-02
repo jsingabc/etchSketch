@@ -1,27 +1,41 @@
+var firstContainer = document.createElement("div");
+firstContainer.setAttribute('class', 'firstContainer');
+document.body.appendChild(firstContainer);
+
+const moreSquares = document.createElement('button');
+moreSquares.setAttribute('class', 'moreSquares')
+firstContainer.appendChild(moreSquares);
+moreSquares.textContent = "Add more squares click"
+
+
 //Main Container for divs, where i flex
 var container = document.createElement('div')
-container.setAttribute('id', 'container');
+container.setAttribute('class', 'container');
 document.body.appendChild(container);
 
-//Gave the looped divs a id
-var divGrid = document.createElement('div');
-divGrid.id = "divGrid";
-divGrid.dataset = "divGrid";
+
 
 //this loop gives me 256 solo divs
 for (let i = 0; i < 256; i++) {
-     container.innerHTML += '<div id="divGrid" dataset="divGrid"></div>';
+     container.innerHTML += '<div class="grids" dataset="grids"></div>';
 }
 
-//atttempt to contact divs solo but failed
-let grids = document.getElementById("divGrid");
+//Gave the looped divs a class
+var grids = document.querySelectorAll('.grids');
+grids.forEach(el =>
+    el.addEventListener("mouseover", function(){
+        el.style.backgroundColor = randomHex();
+    }))
+    
+
+
 
 //testing what i click on
-grids.addEventListener('click', (e) => {
+/*divGrid.addEventListener('click', (e) => {
     console.log(e);
 
     e.stopPropagation()
-})
+})*/
 
 // function i pulled online to generate random # for colors
 function randomRBG(){
@@ -46,4 +60,28 @@ function randomHex() {
     let hb = b.toString(16).padStart(2, '0');
     
     return "#" + hr + hg + hb;
+}
+
+moreSquares.addEventListener('click', addSquare)
+
+let num;
+function addSquare() {
+    container.innerHTML = "";
+    num = prompt("new squares = your number multiplied, max=64")
+    if (num > 64){
+        return " This is too high";
+    }
+
+    let newNum = num * num;
+
+    for (let i = 0; i < newNum; i++) {
+        container.innerHTML += '<div class="grids" dataset="grids"></div>';
+   }
+
+   var grids = document.querySelectorAll('.grids');
+    grids.forEach(el =>
+    el.addEventListener("mouseover", function(){
+        el.style.backgroundColor = randomHex();
+    }))
+
 }
